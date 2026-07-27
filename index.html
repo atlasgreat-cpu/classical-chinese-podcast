@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classical Chinese Poetry — 唐诗英韵</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Georgia, 'STHeiti', serif; background: #1a0a0a; color: #d4c5a0; min-height: 100vh; }
+  .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
+  .header { text-align: center; margin-bottom: 60px; }
+  .header h1 { font-size: 2.8em; color: #e8d480; margin-bottom: 10px; }
+  .header .cn-title { font-size: 1.4em; color: #b8a060; margin-bottom: 20px; }
+  .header p { font-size: 1.1em; color: #a09070; line-height: 1.7; max-width: 600px; margin: 0 auto; }
+  .divider { width: 100px; height: 1px; background: #b8a060; margin: 30px auto; }
+  .subscribe { background: #2a1a0a; border: 1px solid #5a4a2a; border-radius: 8px; padding: 20px 30px; margin-bottom: 40px; text-align: center; }
+  .subscribe input { width: 100%; max-width: 500px; padding: 10px; background: #1a0a0a; border: 1px solid #5a4a2a; color: #d4c5a0; font-size: 0.9em; border-radius: 4px; }
+  .subscribe .copy-btn { display: inline-block; margin-top: 10px; padding: 8px 24px; background: #5a4a2a; color: #e8d480; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; }
+  .episode { border-bottom: 1px solid #3a2a1a; padding: 20px 0; }
+  .episode:last-child { border: none; }
+  .episode .ep-num { font-size: 0.85em; color: #8a7a5a; margin-bottom: 4px; }
+  .episode h3 { font-size: 1.2em; color: #e8d480; margin-bottom: 6px; }
+  .episode .meta { font-size: 0.85em; color: #8a7a5a; margin-bottom: 8px; }
+  .episode audio { width: 100%; margin-top: 8px; }
+  .footer { text-align: center; margin-top: 60px; font-size: 0.85em; color: #5a4a3a; }
+  a { color: #d4b860; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Classical Chinese Poetry</h1>
+    <div class="cn-title">唐诗英韵</div>
+    <p>Bilingual recitations of Tang Dynasty masterpieces. Each episode features a poem in English and Chinese, with historical context, literary insight, and the voices of three narrators.</p>
+    <p style="margin-top:12px; font-size:0.95em;">中英双语唐诗朗诵 — 每集一首诗，双人对话 + 三声线切换 + 中英对照朗诵</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="subscribe">
+    <p style="margin-bottom:10px;">📡 <strong>RSS Feed</strong> — 复制此地址到你的播客客户端</p>
+    <input type="text" id="rss-url" readonly value="https://atlasgreat-cpu.github.io/classical-chinese-podcast/feed.xml">
+    <br>
+    <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('rss-url').value);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy RSS URL',1500)">Copy RSS URL</button>
+    <p style="margin-top:12px; font-size:0.85em; color:#8a7a5a;">
+      <a href="https://podcasters.spotify.com/">Spotify for Podcasters</a> &nbsp;·&nbsp;
+      <a href="https://podcastsconnect.apple.com/">Apple Podcasts Connect</a> &nbsp;·&nbsp;
+      <a href="feed.xml">Raw RSS</a>
+    </p>
+  </div>
+
+  <div class="divider"></div>
+
+  <h2 style="color:#e8d480; margin-bottom:20px;">Episodes</h2>
+  <div id="episodes"><p style="color:#8a7a5a;">Loading episodes…</p></div>
+
+  <div class="footer">
+    <p>Generated with ❤️ using Edge TTS + Python + GitHub Pages</p>
+  </div>
+</div>
+
+<script>
+// Fetch and parse the RSS feed client-side
+fetch('feed.xml')
+  .then(r => r.text())
+  .then(xml => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(xml, 'text/xml');
+    const items = doc.querySelectorAll('item');
+    const container = document.getElementById('episodes');
+    if (!items.length) { container.innerHTML = '<p>No episodes yet.</p>'; return; }
+
+    let html = '';
+    items.forEach((item, i) => {
+      const title = item.querySelector('title')?.textContent || 'Untitled';
+      const desc = item.querySelector('description')?.textContent || '';
+      const pubDate = item.querySelector('pubDate')?.textContent || '';
+      const duration = item.querySelector('itunes\\:duration, duration')?.textContent || '';
+      const epNum = item.querySelector('itunes\\:episode, episode')?.textContent || (items.length - i);
+      const enclosure = item.querySelector('enclosure');
+      const audioUrl = enclosure?.getAttribute('url') || '';
+      const date = new Date(pubDate).toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+
+      html += `
+        <div class="episode">
+          <div class="ep-num">Episode #${epNum} · ${duration} · ${date}</div>
+          <h3>${title}</h3>
+          <div class="meta">${desc.substring(0, 200)}${desc.length > 200 ? '…' : ''}</div>
+          <audio controls preload="none" src="${audioUrl}"></audio>
+        </div>`;
+    });
+    container.innerHTML = html;
+  })
+  .catch(() => { document.getElementById('episodes').innerHTML = '<p style="color:#8a7a5a;">Unable to load episodes. View <a href="feed.xml">RSS feed</a> directly.</p>'; });
+</script>
+</body>
+</html>
