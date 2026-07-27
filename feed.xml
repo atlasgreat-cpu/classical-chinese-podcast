@@ -114,5 +114,20 @@
     <itunes:image href="https://atlasgreat-cpu.github.io/classical-chinese-podcast/artwork.png"/>
     <itunes:explicit>no</itunes:explicit>
   </item>
+  <item>
+    <title>芙蓉楼送辛渐 — 王昌龄 (Wang Changling)</title>
+    <description></description>
+    <content:encoded><![CDATA[]]></content:encoded>
+    <enclosure url="https://atlasgreat-cpu.github.io/classical-chinese-podcast/episodes/芙蓉楼送辛渐_podcast.mp3" length="1799985" type="audio/mpeg"/>
+    <guid isPermaLink="false">https://atlasgreat-cpu.github.io/classical-chinese-podcast/?ep=7</guid>
+    <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
+    <itunes:title>芙蓉楼送辛渐</itunes:title>
+    <itunes:episode>7</itunes:episode>
+    <itunes:duration>00:03:44</itunes:duration>
+    <itunes:author>atlasgreat</itunes:author>
+    <itunes:summary></itunes:summary>
+    <itunes:image href="https://atlasgreat-cpu.github.io/classical-chinese-podcast/artwork.png"/>
+    <itunes:explicit>no</itunes:explicit>
+  </item>
 </channel>
 </rss>
