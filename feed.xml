@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     version="2.0">
+<channel>
+  <title>Classical Chinese Poetry — 唐诗英韵</title>
+  <link>https://atlasgreat-cpu.github.io/classical-chinese-podcast/</link>
+  <description>Bilingual recitations of Tang Dynasty masterpieces. Each episode features a poem in English and Chinese, with historical context and literary insight. 中英双语唐诗朗诵，探索千年诗韵。</description>
+  <language>en</language>
+  <lastBuildDate>Mon, 27 Jul 2026 00:00:00 +0000</lastBuildDate>
+  <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
+  <atom:link href="https://atlasgreat-cpu.github.io/classical-chinese-podcast/feed.xml" rel="self" type="application/rss+xml"/>
+  <itunes:author>atlasgreat</itunes:author>
+  <itunes:summary>Bilingual recitations of Tang Dynasty masterpieces. Each episode features a poem in English and Chinese, with historical context and literary insight. 中英双语唐诗朗诵，探索千年诗韵。</itunes:summary>
+  <itunes:image href="https://atlasgreat-cpu.github.io/classical-chinese-podcast/artwork.png"/>
+  <itunes:category text="Arts">
+    <itunes:category text="Books"/>
+  </itunes:category>
+  <itunes:explicit>no</itunes:explicit>
+  <itunes:type>episodic</itunes:type>
+  <image>
+    <url>https://atlasgreat-cpu.github.io/classical-chinese-podcast/artwork.png</url>
+    <title>Classical Chinese Poetry — 唐诗英韵</title>
+    <link>https://atlasgreat-cpu.github.io/classical-chinese-podcast/</link>
+  </image>
+  <item>
+    <title>黄鹤楼送孟浩然之广陵 — 李白 (Li Bai)</title>
+    <description></description>
+    <content:encoded><![CDATA[]]></content:encoded>
+    <enclosure url="https://atlasgreat-cpu.github.io/classical-chinese-podcast/episodes/黄鹤楼送孟浩然之广陵_podcast.mp3" length="1787655" type="audio/mpeg"/>
+    <guid isPermaLink="false">https://atlasgreat-cpu.github.io/classical-chinese-podcast/?ep=1</guid>
+    <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
+    <itunes:title>黄鹤楼送孟浩然之广陵</itunes:title>
+    <itunes:episode>1</itunes:episode>
+    <itunes:duration>00:03:43</itunes:duration>
+    <itunes:author>atlasgreat</itunes:author>
+    <itunes:summary></itunes:summary>
+    <itunes:image href="https://atlasgreat-cpu.github.io/classical-chinese-podcast/artwork.png"/>
+    <itunes:explicit>no</itunes:explicit>
+  </item>
+</channel>
+</rss>
