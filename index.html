@@ -4,25 +4,58 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Classical Chinese Poetry — 唐诗英韵</title>
+<!-- 引入轻量级连续播放器 APlayer 样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: Georgia, 'STHeiti', serif; background: #1a0a0a; color: #d4c5a0; min-height: 100vh; }
   .container { max-width: 800px; margin: 0 auto; padding: 60px 20px; }
-  .header { text-align: center; margin-bottom: 60px; }
+  
+  .header { text-align: center; margin-bottom: 40px; }
   .header h1 { font-size: 2.8em; color: #e8d480; margin-bottom: 10px; }
   .header .cn-title { font-size: 1.4em; color: #b8a060; margin-bottom: 20px; }
-  .header p { font-size: 1.1em; color: #a09070; line-height: 1.7; max-width: 600px; margin: 0 auto; }
-  .divider { width: 100px; height: 1px; background: #b8a060; margin: 30px auto; }
+  .header p { font-size: 1.1em; color: #a09070; line-height: 1.7; max-width: 650px; margin: 0 auto; }
+  
+  /* 个人主页寄语框 */
+  .personal-note {
+    background: #2a1a0a;
+    border-left: 4px solid #b8a060;
+    border-radius: 6px;
+    padding: 20px 25px;
+    margin: 25px auto 0;
+    text-align: left;
+    max-width: 650px;
+    font-size: 0.95em;
+    color: #c4b590;
+    line-height: 1.8;
+  }
+  
+  .divider { width: 100px; height: 1px; background: #b8a060; margin: 35px auto; }
+  
   .subscribe { background: #2a1a0a; border: 1px solid #5a4a2a; border-radius: 8px; padding: 20px 30px; margin-bottom: 40px; text-align: center; }
   .subscribe input { width: 100%; max-width: 500px; padding: 10px; background: #1a0a0a; border: 1px solid #5a4a2a; color: #d4c5a0; font-size: 0.9em; border-radius: 4px; }
   .subscribe .copy-btn { display: inline-block; margin-top: 10px; padding: 8px 24px; background: #5a4a2a; color: #e8d480; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; }
+  
+  /* APlayer 古风自定义适配 */
+  .aplayer { background: #2a1a0a !important; border: 1px solid #5a4a2a !important; border-radius: 8px !important; color: #d4c5a0 !important; margin-bottom: 40px; }
+  .aplayer .aplayer-title { color: #e8d480 !important; }
+  .aplayer .aplayer-author { color: #a09070 !important; }
+  .aplayer .aplayer-list ol li:hover { background: #3a2a1a !important; }
+  .aplayer .aplayer-list ol li.aplayer-list-light { background: #3a2a1a !important; }
+  .aplayer .aplayer-list ol li { border-top: 1px solid #3a2a1a !important; color: #c4b590 !important; }
+
+  .section-title { color: #e8d480; margin-bottom: 20px; font-size: 1.5em; border-bottom: 1px solid #3a2a1a; padding-bottom: 8px; }
+
   .episode { border-bottom: 1px solid #3a2a1a; padding: 20px 0; }
   .episode:last-child { border: none; }
   .episode .ep-num { font-size: 0.85em; color: #8a7a5a; margin-bottom: 4px; }
   .episode h3 { font-size: 1.2em; color: #e8d480; margin-bottom: 6px; }
-  .episode .meta { font-size: 0.85em; color: #8a7a5a; margin-bottom: 8px; }
-  .episode audio { width: 100%; margin-top: 8px; }
-  .footer { text-align: center; margin-top: 60px; font-size: 0.85em; color: #5a4a3a; }
+  .episode .meta { font-size: 0.85em; color: #a09070; margin-bottom: 8px; line-height: 1.6; }
+
+  /* 听众互动模块 */
+  .contact-box { background: #2a1a0a; border: 1px dashed #5a4a2a; border-radius: 8px; padding: 25px; text-align: center; margin-top: 40px; }
+
+  .footer { text-align: center; margin-top: 60px; font-size: 0.85em; color: #8a7a5a; }
   a { color: #d4b860; text-decoration: none; }
   a:hover { text-decoration: underline; }
 </style>
@@ -33,11 +66,17 @@
     <h1>Classical Chinese Poetry</h1>
     <div class="cn-title">唐诗英韵</div>
     <p>Bilingual recitations of Tang Dynasty masterpieces. Each episode features a poem in English and Chinese, with historical context, literary insight, and the voices of three narrators.</p>
-    <p style="margin-top:12px; font-size:0.95em;">中英双语唐诗朗诵 — 每集一首诗，双人对话 + 三声线切换 + 中英对照朗诵</p>
+    
+    <!-- 个人温度寄语 -->
+    <div class="personal-note">
+      <p>👋 <strong>Welcome to my podcast space!</strong></p>
+      <p>我是 <strong>atlasgreat</strong>。这里是我倾注热情建立的唐诗音频空间——精选唐代诗篇，通过中英双语朗诵、历史背景梳理与现代视角解读，带你跨越千年体验古诗韵味。欢迎在线连续收听或在下方留言交流。</p>
+    </div>
   </div>
 
   <div class="divider"></div>
 
+  <!-- RSS 订阅区域 -->
   <div class="subscribe">
     <p style="margin-bottom:10px;">📡 <strong>RSS Feed</strong> — 复制此地址到你的播客客户端</p>
     <input type="text" id="rss-url" readonly value="https://atlasgreat-cpu.github.io/classical-chinese-podcast/feed.xml">
@@ -50,18 +89,33 @@
     </p>
   </div>
 
-  <div class="divider"></div>
+  <!-- 连续播放器区域 -->
+  <h2 class="section-title">🎧 Continuous Player / 连续顺序收听</h2>
+  <div id="aplayer"></div>
 
-  <h2 style="color:#e8d480; margin-bottom:20px;">Episodes</h2>
+  <!-- 详细单集展示列表 -->
+  <h2 class="section-title">📜 Episode Guide / 诗词列表</h2>
   <div id="episodes"><p style="color:#8a7a5a;">Loading episodes…</p></div>
 
+  <!-- 听众留言与联系方式 -->
+  <div class="contact-box">
+    <h3 style="color:#e8d480; margin-bottom:10px;">💬 交流与反馈 / Connect with Me</h3>
+    <p style="color:#a09070; font-size:0.9em; line-height:1.6;">
+      对解读有任何独到见解，或是有特别想听的诗篇？欢迎随时发邮件给我交流：<br>
+      ✉️ <a href="mailto:atlasgreat@gmail.com" style="color:#e8d480; font-weight:bold;">atlasgreat@gmail.com</a>
+    </p>
+  </div>
+
+  <!-- 优雅自然的页脚（彻底去除了机器与 Python 标语） -->
   <div class="footer">
-    <p>Generated with ❤️ using Edge TTS + Python + GitHub Pages</p>
+    <p>© Classical Chinese Poetry — 唐诗英韵 | Curated & Hosted by atlasgreat</p>
   </div>
 </div>
 
+<!-- 引入 APlayer 播放器核心 JS -->
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 <script>
-// Fetch and parse the RSS feed client-side
+// 解析 feed.xml，自动充实连续播放器与单集列表
 fetch('feed.xml')
   .then(r => r.text())
   .then(xml => {
@@ -69,9 +123,15 @@ fetch('feed.xml')
     const doc = parser.parseFromString(xml, 'text/xml');
     const items = doc.querySelectorAll('item');
     const container = document.getElementById('episodes');
-    if (!items.length) { container.innerHTML = '<p>No episodes yet.</p>'; return; }
+    
+    if (!items.length) { 
+      container.innerHTML = '<p>No episodes found.</p>'; 
+      return; 
+    }
 
     let html = '';
+    const audioList = [];
+
     items.forEach((item, i) => {
       const title = item.querySelector('title')?.textContent || 'Untitled';
       const desc = item.querySelector('description')?.textContent || '';
@@ -82,17 +142,41 @@ fetch('feed.xml')
       const audioUrl = enclosure?.getAttribute('url') || '';
       const date = new Date(pubDate).toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
 
+      // 组装文本列表
       html += `
         <div class="episode">
           <div class="ep-num">Episode #${epNum} · ${duration} · ${date}</div>
           <h3>${title}</h3>
-          <div class="meta">${desc.substring(0, 200)}${desc.length > 200 ? '…' : ''}</div>
-          <audio controls preload="none" src="${audioUrl}"></audio>
+          <div class="meta">${desc.substring(0, 220)}${desc.length > 220 ? '…' : ''}</div>
         </div>`;
+
+      // 组装连续播放器列表数据
+      if(audioUrl) {
+        audioList.push({
+          name: title,
+          artist: 'atlasgreat',
+          url: audioUrl,
+          cover: 'artwork.png'
+        });
+      }
     });
+
     container.innerHTML = html;
+
+    // 初始化 APlayer 播放器，实现连续自动播放
+    if(audioList.length > 0) {
+      new APlayer({
+        container: document.getElementById('aplayer'),
+        theme: '#b8a060',
+        listFolded: false,
+        listMaxHeight: '350px',
+        audio: audioList
+      });
+    }
   })
-  .catch(() => { document.getElementById('episodes').innerHTML = '<p style="color:#8a7a5a;">Unable to load episodes. View <a href="feed.xml">RSS feed</a> directly.</p>'; });
+  .catch(() => { 
+    document.getElementById('episodes').innerHTML = '<p style="color:#8a7a5a;">Unable to load episodes. View <a href="feed.xml">RSS feed</a> directly.</p>'; 
+  });
 </script>
 </body>
 </html>
