@@ -84,5 +84,20 @@
     <itunes:image href="https://atlasgreat-cpu.github.io/classical-chinese-podcast/artwork.png"/>
     <itunes:explicit>no</itunes:explicit>
   </item>
+  <item>
+    <title>送元二使安西 — 王维 (Wang Wei)</title>
+    <description></description>
+    <content:encoded><![CDATA[]]></content:encoded>
+    <enclosure url="https://atlasgreat-cpu.github.io/classical-chinese-podcast/episodes/送元二使安西_podcast.mp3" length="1725588" type="audio/mpeg"/>
+    <guid isPermaLink="false">https://atlasgreat-cpu.github.io/classical-chinese-podcast/?ep=5</guid>
+    <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
+    <itunes:title>送元二使安西</itunes:title>
+    <itunes:episode>5</itunes:episode>
+    <itunes:duration>00:03:35</itunes:duration>
+    <itunes:author>atlasgreat</itunes:author>
+    <itunes:summary></itunes:summary>
+    <itunes:image href="https://atlasgreat-cpu.github.io/classical-chinese-podcast/artwork.png"/>
+    <itunes:explicit>no</itunes:explicit>
+  </item>
 </channel>
 </rss>
