@@ -33,9 +33,10 @@
   .divider { width: 100px; height: 1px; background: #b8a060; margin: 35px auto; }
   
   .subscribe { background: #2a1a0a; border: 1px solid #5a4a2a; border-radius: 8px; padding: 20px 30px; margin-bottom: 40px; text-align: center; }
-  .subscribe input { width: 100%; max-width: 500px; padding: 10px; background: #1a0a0a; border: 1px solid #5a4a2a; color: #d4c5a0; font-size: 0.9em; border-radius: 4px; }
-  .subscribe .copy-btn { display: inline-block; margin-top: 10px; padding: 8px 24px; background: #5a4a2a; color: #e8d480; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; }
-  
+  .subscribe input { width: 100%; max-width: 500px; padding: 10px; background: #1a0a0a; border: 1px solid #5a4a2a; color: #d4c5a0; font-size: 0.9em; border-radius: 4px; text-align: center; }
+  .subscribe .copy-btn { display: inline-block; margin-top: 12px; padding: 8px 24px; background: #5a4a2a; color: #e8d480; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9em; font-weight: bold; }
+  .subscribe .copy-btn:hover { background: #7a6a4a; }
+
   /* APlayer 古风自定义适配 */
   .aplayer { background: #2a1a0a !important; border: 1px solid #5a4a2a !important; border-radius: 8px !important; color: #d4c5a0 !important; margin-bottom: 40px; }
   .aplayer .aplayer-title { color: #e8d480 !important; }
@@ -46,11 +47,11 @@
 
   .section-title { color: #e8d480; margin-bottom: 20px; font-size: 1.5em; border-bottom: 1px solid #3a2a1a; padding-bottom: 8px; }
 
-  .episode { border-bottom: 1px solid #3a2a1a; padding: 20px 0; }
+  .episode { border-bottom: 1px solid #3a2a1a; padding: 22px 0; }
   .episode:last-child { border: none; }
-  .episode .ep-num { font-size: 0.85em; color: #8a7a5a; margin-bottom: 4px; }
-  .episode h3 { font-size: 1.2em; color: #e8d480; margin-bottom: 6px; }
-  .episode .meta { font-size: 0.85em; color: #a09070; margin-bottom: 8px; line-height: 1.6; }
+  .episode .ep-num { font-size: 0.85em; color: #8a7a5a; margin-bottom: 6px; }
+  .episode h3 { font-size: 1.2em; color: #e8d480; margin-bottom: 8px; line-height: 1.4; }
+  .episode .meta { font-size: 0.9em; color: #a09070; line-height: 1.7; text-align: justify; }
 
   /* 听众互动模块 */
   .contact-box { background: #2a1a0a; border: 1px dashed #5a4a2a; border-radius: 8px; padding: 25px; text-align: center; margin-top: 40px; }
@@ -65,7 +66,7 @@
   <div class="header">
     <h1>Classical Chinese Poetry</h1>
     <div class="cn-title">唐诗英韵</div>
-    <p>Bilingual recitations of Tang Dynasty masterpieces. Each episode features a poem in English and Chinese, with historical context, literary insight, and the voices of three narrators.</p>
+    <p>Bilingual recitations of Tang Dynasty masterpieces. Each episode features a poem in English and Chinese, with historical context, literary insight, and dual-host commentary.</p>
     
     <!-- 个人温度寄语 -->
     <div class="personal-note">
@@ -82,10 +83,10 @@
     <input type="text" id="rss-url" readonly value="https://atlasgreat-cpu.github.io/classical-chinese-podcast/feed.xml">
     <br>
     <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('rss-url').value);this.textContent='Copied!';setTimeout(()=>this.textContent='Copy RSS URL',1500)">Copy RSS URL</button>
-    <p style="margin-top:12px; font-size:0.85em; color:#8a7a5a;">
-      <a href="https://podcasters.spotify.com/">Spotify for Podcasters</a> &nbsp;·&nbsp;
-      <a href="https://podcastsconnect.apple.com/">Apple Podcasts Connect</a> &nbsp;·&nbsp;
-      <a href="feed.xml">Raw RSS</a>
+    <p style="margin-top:14px; font-size:0.85em; color:#8a7a5a;">
+      <a href="https://podcasters.spotify.com/" target="_blank">Spotify for Podcasters</a> &nbsp;·&nbsp;
+      <a href="https://podcastsconnect.apple.com/" target="_blank">Apple Podcasts Connect</a> &nbsp;·&nbsp;
+      <a href="feed.xml" target="_blank">Raw RSS</a>
     </p>
   </div>
 
@@ -106,7 +107,7 @@
     </p>
   </div>
 
-  <!-- 优雅自然的页脚（彻底去除了机器与 Python 标语） -->
+  <!-- 页脚 -->
   <div class="footer">
     <p>© Classical Chinese Poetry — 唐诗英韵 | Curated & Hosted by atlasgreat</p>
   </div>
@@ -115,7 +116,16 @@
 <!-- 引入 APlayer 播放器核心 JS -->
 <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 <script>
-// 解析 feed.xml，自动充实连续播放器与单集列表
+// 获取节点文本辅助函数（兼容带有命名空间的标签）
+function getTagText(item, tagNames) {
+  for (let name of tagNames) {
+    let el = item.querySelector(name) || item.getElementsByTagName(name)[0];
+    if (el && el.textContent) return el.textContent.trim();
+  }
+  return '';
+}
+
+// 解析 feed.xml，动态渲染播放器与展示列表
 fetch('feed.xml')
   .then(r => r.text())
   .then(xml => {
@@ -125,7 +135,7 @@ fetch('feed.xml')
     const container = document.getElementById('episodes');
     
     if (!items.length) { 
-      container.innerHTML = '<p>No episodes found.</p>'; 
+      container.innerHTML = '<p style="color:#8a7a5a;">No episodes found.</p>'; 
       return; 
     }
 
@@ -133,37 +143,42 @@ fetch('feed.xml')
     const audioList = [];
 
     items.forEach((item, i) => {
-      const title = item.querySelector('title')?.textContent || 'Untitled';
-      const desc = item.querySelector('description')?.textContent || '';
-      const pubDate = item.querySelector('pubDate')?.textContent || '';
-      const duration = item.querySelector('itunes\\:duration, duration')?.textContent || '';
-      const epNum = item.querySelector('itunes\\:episode, episode')?.textContent || (items.length - i);
+      const title = getTagText(item, ['title']) || 'Untitled Episode';
+      const desc = getTagText(item, ['description']);
+      const pubDate = getTagText(item, ['pubDate']);
+      const duration = getTagText(item, ['itunes\\:duration', 'duration']);
+      const epNum = getTagText(item, ['itunes\\:episode', 'episode']) || (items.length - i);
+      
       const enclosure = item.querySelector('enclosure');
-      const audioUrl = enclosure?.getAttribute('url') || '';
-      const date = new Date(pubDate).toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+      const audioUrl = enclosure ? enclosure.getAttribute('url') : '';
+      
+      const imageEl = item.querySelector('itunes\\:image, image');
+      const coverUrl = imageEl ? (imageEl.getAttribute('href') || imageEl.getAttribute('url')) : 'artwork.png';
 
-      // 组装文本列表
+      const dateStr = pubDate ? new Date(pubDate).toLocaleDateString('en-US', {year:'numeric', month:'short', day:'numeric'}) : '';
+
+      // 组装 HTML 单集列表
       html += `
         <div class="episode">
-          <div class="ep-num">Episode #${epNum} · ${duration} · ${date}</div>
+          <div class="ep-num">Episode #${epNum} ${duration ? '· ' + duration : ''} ${dateStr ? '· ' + dateStr : ''}</div>
           <h3>${title}</h3>
-          <div class="meta">${desc.substring(0, 220)}${desc.length > 220 ? '…' : ''}</div>
+          <div class="meta">${desc}</div>
         </div>`;
 
-      // 组装连续播放器列表数据
+      // 组装播放器列表
       if(audioUrl) {
         audioList.push({
           name: title,
           artist: 'atlasgreat',
           url: audioUrl,
-          cover: 'artwork.png'
+          cover: coverUrl || 'artwork.png'
         });
       }
     });
 
     container.innerHTML = html;
 
-    // 初始化 APlayer 播放器，实现连续自动播放
+    // 初始化 APlayer 顺序自动播放器
     if(audioList.length > 0) {
       new APlayer({
         container: document.getElementById('aplayer'),
@@ -174,8 +189,9 @@ fetch('feed.xml')
       });
     }
   })
-  .catch(() => { 
-    document.getElementById('episodes').innerHTML = '<p style="color:#8a7a5a;">Unable to load episodes. View <a href="feed.xml">RSS feed</a> directly.</p>'; 
+  .catch((err) => { 
+    console.error('RSS Fetch Error:', err);
+    document.getElementById('episodes').innerHTML = '<p style="color:#8a7a5a;">Unable to load episodes. You can view the <a href="feed.xml">RSS feed directly</a>.</p>'; 
   });
 </script>
 </body>

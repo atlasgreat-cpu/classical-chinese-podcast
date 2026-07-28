@@ -12,6 +12,7 @@
   <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
   <atom:link href="https://atlasgreat-cpu.github.io/classical-chinese-podcast/feed.xml" rel="self" type="application/rss+xml"/>
   <itunes:author>atlasgreat</itunes:author>
+  <!-- 所有权验证关键信息 -->  <itunes:owner>    <itunes:name>atlasgreat</itunes:name>    <itunes:email>atlasgreat@gmail.com</itunes:email>  </itunes:owner>
   <itunes:summary>Bilingual recitations of Tang Dynasty masterpieces. Each episode features a poem in English and Chinese, with historical context and literary insight. 中英双语唐诗朗诵，探索千年诗韵。</itunes:summary>
   <itunes:image href="https://atlasgreat-cpu.github.io/classical-chinese-podcast/artwork.png"/>
   <itunes:category text="Arts">
